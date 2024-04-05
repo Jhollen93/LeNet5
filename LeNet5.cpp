@@ -1,4 +1,4 @@
-#include "tiny_dnn.h"
+#include "tiny_dnn/tiny_dnn.h"
 using namespace tiny_dnn;
 using namespace tiny_dnn::layers;
 
@@ -12,7 +12,7 @@ net << conv(32, 32, 5, 1, 6) << sigmoid_layer()
     << fc(120, 84) << sigmoid_layer()
     << fc(84, 10) << softmax();
 
-std::string data_dir_path = "path_to_your_data_directory";
+std::string data_dir_path = "MNIST";
 std::vector<label_t> train_labels, test_labels;
 std::vector<vec_t> train_images, test_images;
 
