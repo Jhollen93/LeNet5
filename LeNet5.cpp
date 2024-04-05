@@ -1,15 +1,16 @@
+#include "tiny_dnn.h"
 using namespace tiny_dnn;
 using namespace tiny_dnn::layers;
 
 network<sequential> net;
 
-net << conv(32, 32, 5, 1, 6) << tanh_layer() 
-    << ave_pool(28, 28, 6, 2) << tanh_layer()
-    << conv(14, 14, 5, 6, 16) << tanh_layer()
-    << ave_pool(10, 10, 16, 2) << tanh_layer()
-    << conv(5, 5, 5, 16, 120) << tanh_layer()
-    << fc(120, 84) << tanh_layer()
-    << fc(84, 10);
+net << conv(32, 32, 5, 1, 6) << sigmoid_layer() 
+    << ave_pool(28, 28, 6, 2)
+    << conv(14, 14, 5, 6, 16) << sigmoid_layer()
+    << ave_pool(10, 10, 16, 2)
+    << conv(5, 5, 5, 16, 120) << sigmoid_layer()
+    << fc(120, 84) << sigmoid_layer()
+    << fc(84, 10) << softmax();
 
 std::string data_dir_path = "path_to_your_data_directory";
 std::vector<label_t> train_labels, test_labels;
